@@ -1,0 +1,51 @@
+.container {
+    border: solid blue;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+    border-radius: 5px;
+}
+
+.dashboard {
+    border: solid black;
+    padding: 1em;
+}
+
+.spacer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sprintContainer {
+    border: solid black;
+    padding: 1em;
+}
+
+.picture-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dummyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.animal {
+    border: solid black;
+    height: 250px;
+    width: 400px;
+}
+
+.click-me {
+    margin-top: 10px;
+    width: 350px;
+}
+
+.animal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
