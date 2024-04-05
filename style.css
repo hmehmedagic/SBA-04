@@ -53,6 +53,37 @@ body {
     color: #fd2727;
 }
 
+.picture-container {
+    display: none;
+    justify-content: space-around;
+}
+
+.dummyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.a-char {
+    border: solid black;
+    height: 250px;
+    width: 400px;
+}
+
+.click-me {
+    margin-top: 10px;
+    width: 350px;
+}
+
+.a-char-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 /* Navbar Elements */
 

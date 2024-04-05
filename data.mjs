@@ -1,4 +1,5 @@
 import Character, { postUser } from "./app.mjs";
+import { getPictures } from "./helper.mjs";
 
 const homeScreen = () => {
     const dash = document.querySelector('.characterContainer');
@@ -38,9 +39,14 @@ buttons.forEach(button => {
 });
 
 const homeBtn = document.querySelector('#mainbtn');
-homeBtn.addEventListener('click', (event) => {
+homeBtn.addEventListener('click', () => {
     homeScreen();
 });
+
+const picBtn = document.querySelector('#endBtn');
+picBtn.addEventListener('click', () => {
+    getPictures();
+})
 
 // Particles
 particlesJS('particles-js',
