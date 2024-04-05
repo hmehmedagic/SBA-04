@@ -23,7 +23,6 @@ body {
 
 #particles-js {
     z-index: -10;
-    position: absolute;
 }
 
 .container {

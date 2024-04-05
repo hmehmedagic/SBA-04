@@ -5,6 +5,8 @@ const homeScreen = () => {
     dash.style.display = 'none';
     const header = document.querySelector('.moogleAPI');
     header.style.display = 'block';
+    const particles = document.querySelector('#particles-js');
+    particles.style.display = 'block';
 }
 
 const fetchMe = async(id) => {
@@ -15,6 +17,8 @@ const fetchMe = async(id) => {
     dash.innerHTML = '';
     const header = document.querySelector('.moogleAPI');
     header.style.display = 'none';
+    const particles = document.querySelector('#particles-js');
+    particles.style.display = 'none';
     await fetch("https://www.moogleapi.com/api/v1/characters")
         .then((response) => response.json())
         .then((json) => {
