@@ -19,6 +19,7 @@ body {
     font-size: 80px;
     color: white;
     text-shadow: 2px 2px 4px black;
+    pointer-events: none;
 }
 
 #particles-js {
