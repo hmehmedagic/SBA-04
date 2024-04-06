@@ -153,7 +153,27 @@ body {
     color: rgba(0, 0, 0, 0.8);
 }
 
+.dropdown-content #dd-clicker {
+    display: inline;
+}
+
+.dropdown #dd-clicker2 {
+    display: none;
+}
+
+.dropdown:hover #dd-clicker2 {
+    display: inline;
+}
+
+.dropdown:hover #dd-clicker {
+    display: none;
+}
+
 #dd-clicker {
+    transform: scale(1, 0.5);
+}
+
+#dd-clicker2 {
     transform: scale(1, 0.5);
 }
 
