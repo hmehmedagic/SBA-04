@@ -71,17 +71,25 @@ body {
     border: solid black;
     height: 250px;
     width: 400px;
+    background-color: white;
+    padding: 20px;
 }
 
 .click-me {
     margin-top: 10px;
     width: 350px;
+    height: 50px;
+    background-color: #FFEBD0;
+    color: #302358;
+    font-style: oblique;
+    font-weight: bolder;
 }
 
 .a-char-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 20px;
 }
 
 

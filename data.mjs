@@ -1,9 +1,11 @@
 import Character, { postUser } from "./app.mjs";
-import { getPictures } from "./helper.mjs";
+import { getPictures, getCharacterInfo } from "./helper.mjs";
 
 const homeScreen = () => {
     const dash = document.querySelector('.characterContainer');
     dash.style.display = 'none';
+    const pics = document.querySelector('.picture-container');
+    pics.style.display = 'none';
     const header = document.querySelector('.moogleAPI');
     header.style.display = 'block';
     const particles = document.querySelector('#particles-js');
@@ -20,6 +22,8 @@ const fetchMe = async(id) => {
     header.style.display = 'none';
     const particles = document.querySelector('#particles-js');
     particles.style.display = 'none';
+    const pics = document.querySelector('.picture-container');
+    pics.style.display = 'none';
     await fetch("https://www.moogleapi.com/api/v1/characters")
         .then((response) => response.json())
         .then((json) => {
@@ -46,6 +50,11 @@ homeBtn.addEventListener('click', () => {
 const picBtn = document.querySelector('#endBtn');
 picBtn.addEventListener('click', () => {
     getPictures();
+})
+
+const charBtn = document.querySelector('.click-me');
+charBtn.addEventListener('click', () => {
+    getCharacterInfo();
 })
 
 // Particles

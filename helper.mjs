@@ -10,6 +10,8 @@ export const getPictures = async() => {
     header.style.display = 'none';
     const particles = document.querySelector('#particles-js');
     particles.style.display = 'none';
+    const dash = document.querySelector('.characterContainer');
+    dash.style.display = 'none';
     await fetch("https://www.moogleapi.com/api/v1/characters")
         .then((response) => response.json())
         .then((json) => {
@@ -33,37 +35,21 @@ export const getPictures = async() => {
         });
 }
 
-
-/*export async function getPhotos() {
-    fetch("https://jsonplaceholder.typicode.com/photos")
-        .then((response) => response.json())
-        .then((json) => {
-            let photoContainer = document.querySelector('.photoContainer')
-            console.log(json.thumbnailUrl)
-            let count = 0;
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 3; j++, count++) {
-                    let image = document.createElement('img')
-                    image.setAttribute('src', json[count].thumbnailUrl)
-                    image.setAttribute('class', 'photo')
-                    photoContainer.appendChild(image)
-                    image.onclick = function() {
-                        let rand = Math.floor(Math.random() * 4999)
-                        image.setAttribute('src', json[rand].thumbnailUrl)
-                    }
-                }
-                photoContainer.appendChild(document.createElement('br'))
-            }
-        });
-}
-
-export const getCats = async() => {
-    const response = await fetch("https://api.thecatapi.com/v1/images/search");
+export const getCharacterInfo = async() => {
+    const response = await fetch("https://www.moogleapi.com/api/v1/characters");
     const data = await response.json();
     console.log(data);
-    const url = data[0].url;
+    const nameInput = window.prompt('Select name of character.');
+    const ffInput = window.prompt('Select which Final Fantasy Title they are from.');
 
-    const cat = document.querySelector('.animal');
-    cat.src = url;
-
-}*/
+    try {
+        const chars = Object.values(data).filter(value => value.origin ===
+            ffInput).filter(value => value.name === nameInput);
+        console.log(chars);
+        const char = document.querySelector('.a-char');
+        char.src = chars[0].pictures[0].url;
+        document.querySelector('.namer').innerHTML = nameInput;
+    } catch (error) {
+        window.alert('Character does not exist in this api.');
+    }
+}
