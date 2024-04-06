@@ -1,5 +1,6 @@
 // Fetch Request -> Moogle API
 // https://www.moogleapi.com/
+import { PLACEHOLDER_IMG } from "./data.mjs";
 
 export const getPictures = async() => {
     const picCont = document.querySelector('.picture-container');
@@ -20,13 +21,17 @@ export const getPictures = async() => {
                 for (let j = 0; j < 3; j++) {
                     let rando = Math.floor(Math.random() * 276)
                     let image = document.createElement('img')
-                    image.setAttribute('src', json[rando].pictures[0].url);
+                    try {
+                        image.setAttribute('src', json[rando].pictures[0].url);
+                    } catch (error) {
+                        image.setAttribute('src', PLACEHOLDER_IMG);
+                    }
                     image.setAttribute('class', 'photo')
                     image.style.width = '150px';
                     image.style.height = '150px';
                     photoContainer.appendChild(image)
                     image.onclick = function() {
-                        let rand = Math.floor(Math.random() * 276)
+                        let rand = Math.floor(Math.random() * 275)
                         image.setAttribute('src', json[rand].pictures[0].url)
                     }
                 }
