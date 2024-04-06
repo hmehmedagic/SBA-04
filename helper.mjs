@@ -51,9 +51,9 @@ export const getCharacterInfo = async() => {
         const chars = Object.values(data).filter(value => value.origin ===
             ffInput).filter(value => value.name === nameInput);
         console.log(chars);
-        const char = document.querySelector('.a-char');
-        char.src = chars[0].pictures[0].url;
-        document.querySelector('.namer').innerHTML = nameInput;
+        const char = document.querySelector('.a-char-container');
+        char.querySelector('.a-char').src = chars[0].pictures[0].url;
+        char.querySelector('.namer').innerHTML = nameInput;
     } catch (error) {
         window.alert('Character does not exist in this api.');
     }
