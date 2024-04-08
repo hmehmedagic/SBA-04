@@ -13,6 +13,8 @@ export const getPictures = async() => {
     particles.style.display = 'none';
     const dash = document.querySelector('.characterContainer');
     dash.style.display = 'none';
+    const dash2 = document.querySelector('.titleContainer');
+    dash2.style.display = 'none';
     await fetch("https://www.moogleapi.com/api/v1/characters")
         .then((response) => response.json())
         .then((json) => {

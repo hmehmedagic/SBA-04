@@ -1,5 +1,5 @@
 // Main File for Classes and Functions and vars
-let body = document.querySelector(".dashboard");
+let body = document.querySelector(".characterContainer .dashboard");
 
 export default class Character {
     constructor(name, job) {

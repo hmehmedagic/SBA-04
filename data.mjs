@@ -1,11 +1,14 @@
 import Character, { postUser } from "./app.mjs";
 import { getPictures, getCharacterInfo } from "./helper.mjs";
+import Title, { postTitle } from "./title.mjs";
 
 export const PLACEHOLDER_IMG = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a5d33edf-89e4-4be4-a15f-f15058b4d04d/d6vxp07-64a915bb-dce1-42a2-a7b4-b80f72c454c3.png/v1/fill/w_1024,h_1445/chocobo_rider___final_fantasy_chocobo_moogle_chibi_by_pinkplaidrobot_d6vxp07-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2E1ZDMzZWRmLTg5ZTQtNGJlNC1hMTVmLWYxNTA1OGI0ZDA0ZFwvZDZ2eHAwNy02NGE5MTViYi1kY2UxLTQyYTItYTdiNC1iODBmNzJjNDU0YzMucG5nIiwiaGVpZ2h0IjoiPD0xNDQ1Iiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uud2F0ZXJtYXJrIl0sIndtayI6eyJwYXRoIjoiXC93bVwvYTVkMzNlZGYtODllNC00YmU0LWExNWYtZjE1MDU4YjRkMDRkXC9waW5rcGxhaWRyb2JvdC00LnBuZyIsIm9wYWNpdHkiOjk1LCJwcm9wb3J0aW9ucyI6MC40NSwiZ3Jhdml0eSI6ImNlbnRlciJ9fQ.dmZ4D6sVcOGhOF5nPytZdyjfqMBIO1SFEipHI_RAH1Q";
 
 const homeScreen = () => {
     const dash = document.querySelector('.characterContainer');
     dash.style.display = 'none';
+    const dash2 = document.querySelector('.titleContainer');
+    dash2.style.display = 'none';
     const pics = document.querySelector('.picture-container');
     pics.style.display = 'none';
     const header = document.querySelector('.moogleAPI');
@@ -19,9 +22,14 @@ const homeScreen = () => {
 const fetchMe = async(id) => {
     const charCont = document.querySelector('.characterContainer');
     charCont.style.display = 'block';
-    const dash = document.querySelector('.dashboard');
+    const dash = charCont.querySelector('.dashboard');
     dash.style.display = 'block';
     dash.innerHTML = '';
+    const titleCont = document.querySelector('.titleContainer');
+    titleCont.style.display = 'none';
+    const dash2 = titleCont.querySelector('.dashboard');
+    dash2.style.display = 'none';
+    dash2.innerHTML = '';
     const header = document.querySelector('.moogleAPI');
     header.style.display = 'none';
     const particles = document.querySelector('#particles-js');
@@ -33,6 +41,7 @@ const fetchMe = async(id) => {
     await fetch("https://www.moogleapi.com/api/v1/characters")
         .then((response) => response.json())
         .then((json) => {
+            console.log('this is json' + json);
             const chars = Object.values(json).filter(value => value.origin === id);
             chars.forEach(char => {
                 let user = new Character(char.name, char.job);
@@ -41,10 +50,49 @@ const fetchMe = async(id) => {
             });
         });
 }
-const buttons = document.querySelectorAll('.dropdown-content a');
-buttons.forEach(button => {
+
+const fetchMe2 = async(id) => {
+    const titleCont = document.querySelector('.titleContainer');
+    titleCont.style.display = 'flex';
+    const dash2 = titleCont.querySelector('.dashboard');
+    dash2.style.display = 'block';
+    dash2.innerHTML = '';
+    const charCont = document.querySelector('.characterContainer');
+    charCont.style.display = 'none';
+    const dash = charCont.querySelector('.dashboard');
+    dash.style.display = 'none';
+    dash.innerHTML = '';
+    const header = document.querySelector('.moogleAPI');
+    header.style.display = 'none';
+    const particles = document.querySelector('#particles-js');
+    particles.style.display = 'none';
+    const pics = document.querySelector('.picture-container');
+    pics.style.display = 'none';
+    await fetch("https://www.moogleapi.com/api/v1/games")
+        .then((response) => response.json())
+        .then((json) => {
+            console.log('This is json' + json);
+            const titles = Object.values(json).filter(value => value.title === id);
+            titles.forEach(title => {
+                let game = new Title(title.title, title.picture, title.platform, title.releaseDate, title.description);
+                console.log(game);
+                postTitle(game);
+            });
+        });
+}
+
+const chrbuttons = document.querySelectorAll('#char-content a');
+chrbuttons.forEach(button => {
     button.addEventListener('click', (event) => {
         fetchMe(event.target.id);
+    });
+});
+
+
+const titlebuttons = document.querySelectorAll('#title-content a');
+titlebuttons.forEach(button => {
+    button.addEventListener('click', (event) => {
+        fetchMe2(event.target.id);
     });
 });
 
