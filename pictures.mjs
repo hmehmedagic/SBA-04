@@ -1,6 +1,6 @@
 // Fetch Request -> Moogle API
 // https://www.moogleapi.com/
-import { PLACEHOLDER_IMG } from "./data.mjs";
+import { PLACEHOLDER_IMG } from "./app.mjs";
 
 export const getPictures = async() => {
     const picCont = document.querySelector('.picture-container');
